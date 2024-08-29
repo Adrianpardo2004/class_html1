@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro del Estado Civil Digital</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background-color: #e3f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+            height: 450px; /* Aumentar altura para acomodar el formulario */
+        }
+        .card h3 {
+            color: #023d7c;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        form {
+            display: inline-block;
+            text-align: left; /* Ajustar texto a la izquierda */
+        }
+        input[type="text"] {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+            width: 100%; /* Ajustar ancho al 100% del contenedor */
+            max-width: 180px; /* Ancho máximo */
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .radio-container {
+            display: inline-block;
+            margin-right: 10px; /* Espacio entre los botones */
+        }
+        .form-radio {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #023d7c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #021e3e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Tarjeta con el formulario incluido -->
+        <div class="card">
+            <h3>Registro del estado civil digital</h3>
+            <form id="dataForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+
+                <label for="edad">Edad:</label>
+                <input type="text" id="edad" name="edad" placeholder="Edad" required>
+
+                <h4>Género:</h4>
+                <div class="form-radio">
+                    <div class="radio-container">
+                        <input type="radio" id="contactChoice1" name="contact" value="hombre" required />
+                        <label for="contactChoice1">Hombre</label>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" id="contactChoice2" name="contact" value="mujer" required />
+                        <label for="contactChoice2">Mujer</label>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" id="contactChoice3" name="contact" value="otros" required />
+                        <label for="contactChoice3">Otros</label>
+                    </div>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let datosGuardados = [];
+
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                edad: document.getElementById('edad').value,
+                contact: document.querySelector('input[name="contact"]:checked').value
+            };
+
+            datosGuardados.push(formData);
+
+            const jsonData = JSON.stringify(datosGuardados, null, 2);
+
+            console.log('Datos guardados:', jsonData);
+            alert('Datos guardados en la consola.');
+        });
+    </script>
+</body>
+</html>
